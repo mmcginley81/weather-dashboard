@@ -18,9 +18,16 @@ $(document).ready(function(){
     $('#search-button').on('click', function(){
         console.log('click')
         const city = $('.search-bar').val()
+        localStorage.setItem("searchName", city)
         searchWeather(city)
-        
+        userSearch(city)
     })
+    function userSearch(city){
+        let searchResult = localStorage.getItem("searchName", city)
+        let pastSearch = $('<li>').addClass('list-group-item').text(searchResult)
+        $('.list-group').append(pastSearch);
+
+    }
 
     function searchWeather(city){
         $('#current-weather').empty()
@@ -52,6 +59,12 @@ $(document).ready(function(){
         .then(response =>{
             console.log(response)
             const uvIndex = $('<p>').addClass('card-text').text(`UV Index: ${response.value}`)
+                // if(uvIndex < 2){
+                //     uvIndex.addClass('moderate') 
+                // } else if(uvIndex < 8) { 
+                //     uvIndex.addClass('severe')
+                // }
+                // console.log(uvIndex)
             $('#current-weather .card').append(uvIndex)
             
         })

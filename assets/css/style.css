@@ -9,10 +9,18 @@ img{
 
 .card{
     width: 350px;
-    margin: 10px 50px;
+    margin: auto, auto;
 }
     
 #current-weather{
     display: flex;
     justify-content: center;
+}
+
+.moderate{
+    background-color: coral;
+}
+
+.severe{
+    background-color: red;
 }
