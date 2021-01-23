@@ -1,0 +1,18 @@
+.search-bar{
+    align-items: center;
+}
+
+img{
+    height: 50px;
+    width: 50px;
+}
+
+.card{
+    width: 350px;
+    margin: 10px 50px;
+}
+    
+#current-weather{
+    display: flex;
+    justify-content: center;
+}
