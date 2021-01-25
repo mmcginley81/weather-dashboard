@@ -8,7 +8,9 @@ img{
 }
 
 .card{
-    width: 350px;
+    width: 250px;
+    justify-content: center;
+    align-content: center;
     margin: auto, auto;
 }
     
@@ -23,4 +25,14 @@ img{
 
 .severe{
     background-color: red;
+}
+
+.future-card{
+    width: 175px;
+
+}
+
+.list-group-item:hover{
+    background-color: royalblue;
+    color: white;
 }
