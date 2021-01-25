@@ -1,3 +1,7 @@
+#search-container{
+    margin: 50px;
+}
+
 .search-bar{
     align-items: center;
 }
@@ -12,6 +16,7 @@ img{
     justify-content: center;
     align-content: center;
     margin: auto, auto;
+    padding: 5px
 }
     
 #current-weather{
@@ -27,12 +32,25 @@ img{
     background-color: red;
 }
 
+#future-forecast{
+    display: flex;
+    padding: 20px, 30px, 20px, 10px;
+    margin: 10px;
+}
+
+.forecast-heading {
+    display:block;
+    margin: 5px;
+}
+
 .future-card{
     width: 175px;
-
+    padding: 10px;
+    margin: auto;
 }
 
 .list-group-item:hover{
     background-color: royalblue;
     color: white;
 }
+
