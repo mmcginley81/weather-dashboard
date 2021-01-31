@@ -31,12 +31,6 @@ $(document).ready(function(){
 
     }
 
-    // $('#list-group-item').on('click', function(pastCity){
-    //     console.log("here")
-    //     let pastCity = $('.<li>').val()
-    //     searchWeather(pastCity)
-    // })
-
     function searchWeather(city){
         $('#current-weather').empty()
         
@@ -77,12 +71,13 @@ $(document).ready(function(){
         .then(response => response.json())
         .then(response =>{
             console.log(response.value)
-            const uvIndex = $('<p>').addClass('card-text').text(`UV Index: ${response.value}`)
-                // if(response.value < 2){
-                //     uvIndex.addClass('moderate') 
-                // } else if(response.value < 8) { 
-                //     uvIndex.addClass('severe')
-                // }
+            const uvIndex = $('<button>').addClass('btn').text(`UV Index: ${response.value}`)
+                //check the UV index to classify a warning system.
+                if(response.value > 3 && response.value < 8){
+                    uvIndex.addClass('btn-warning') 
+                } else if(response.value > 8) { 
+                    uvIndex.addClass('btn btn-danger')
+                }
                 console.log(uvIndex)
             $('#current-weather .card').append(uvIndex)
             
@@ -94,6 +89,7 @@ $(document).ready(function(){
         fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchName}&units=imperial&appid=78a87d050ef61463bd5907ddceff6458`)
         .then(response => response.json())
         .then(response =>{
+            
             //console.log(response)
             console.log(response.list[1])
             //let (response.list) = i
@@ -103,9 +99,11 @@ $(document).ready(function(){
                     response => response.then(response => response.json())
                     console.log(response.list[i])
                     
-                    
+                    //convert unix date to local string date
+                    let dt_txtElement = new Date(response.list[i].dt *1000).toLocaleDateString();
+
                     const futureCard = $('<div>').addClass('card text-white bg-primary mb-3 future-card');
-                    const futureDateName = $('<h5>').addClass('card-title').text(`Date: ${response.list[i].dt_txt}`)
+                    const futureDateName = $('<h5>').addClass('card-title').text(`Date: ${dt_txtElement}`);
                     const futureIcon = $('<img>').attr('src', `http://openweathermap.org/img/w/${response.list[i].weather[0].icon}.png`);
                     const futureTemp = $('<p>').addClass('card-text').text(`temperature: ${response.list[i].main.temp} °F`)
                     const futureHumidity = $('<p>').addClass('card-text').text(`humidity: ${response.list[i].main.humidity} %`)
@@ -118,9 +116,7 @@ $(document).ready(function(){
                     $('#future-forecast').append(futureCard)
 
                 }
-                // const dailyTemp = $('<p>').addClass('card-text').text(`temperature: ${response.main.temp} °F`)
-                //console.log(response.list[0].main.temp)
-                //console.log(dailyTemp)
+
             }
         })
     }
